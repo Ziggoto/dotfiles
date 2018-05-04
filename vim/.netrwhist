@@ -1,0 +1,8 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =6
+let g:netrw_dirhist_1='/home/fabio/Projetos/gm-mobile-libs/packages/redux-fragment-connectivity/src'
+let g:netrw_dirhist_2='/home/fabio/Projetos/gm-mobile-libs/packages/redux-fragment-connectivity/src/api'
+let g:netrw_dirhist_3='/home/fabio/Projetos/gm-mobile-libs/packages/redux-fragment-connectivity/src'
+let g:netrw_dirhist_4='/home/fabio/Projetos/gm-mobile-libs/packages/redux-fragment-connectivity/src/modules'
+let g:netrw_dirhist_5='/home/fabio/Projetos/gm-mobile-libs/packages/redux-fragment-connectivity/src'
+let g:netrw_dirhist_6='/home/fabio/Projetos/gm-mobile-libs/packages/redux-fragment-connectivity/src/api'
