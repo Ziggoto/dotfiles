@@ -92,7 +92,9 @@ export BROWSER=/usr/bin/firefox
 export CHROMIUM_BIN=/usr/bin/chromium-browser
 export JAVA_HOME=/usr/lib/jvm/java-8-oracle
 export ANDROID_HOME=/home/fabio/Android/Sdk
-export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
+export GOPATH=/home/fabio/go
+export GOROOT=/usr/local/go
+export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$GOPATH/bin
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/home/fabio/.sdkman"
@@ -107,12 +109,13 @@ fi
 source ~/antigen.zsh
 # antigen bundle soimort/translate-shell
 
-export PATH=/home/fabio/.nvm/versions/node/v8.1.2/bin:/home/fabio/.sdkman/candidates/gradle/current/bin:/home/fabio/bin:/home/fabio/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/lib/jvm/java-8-oracle/bin:/usr/lib/jvm/java-8-oracle/db/bin:/usr/lib/jvm/java-8-oracle/jre/bin:/home/fabio/Android/Sdk/tools:/home/fabio/Android/Sdk/platform-tools:/home/fabio/.vimpkg/bin:$ANDROID_HOME/build-tools/26.0.1
+# export PATH=/home/fabio/.nvm/versions/node/v8.1.2/bin:/home/fabio/.sdkman/candidates/gradle/current/bin:/home/fabio/bin:/home/fabio/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/lib/jvm/java-8-oracle/bin:/usr/lib/jvm/java-8-oracle/db/bin:/usr/lib/jvm/java-8-oracle/jre/bin:/home/fabio/Android/Sdk/tools:/home/fabio/Android/Sdk/platform-tools:/home/fabio/.vimpkg/bin:$ANDROID_HOME/build-tools/26.0.1
 
 export EDITOR=vim
 
-# added by Anaconda2 installer
-export PATH="/home/fabio/anaconda2/bin:$PATH"
+# added by Anaconda3 installer
+export PATH="/home/fabio/anaconda3/bin:$PATH"
+
 export TCLLIBPATH=/usr/lib/x86_64-linux-gnu
 
 function gmdevenv { cd /home/fabio/Projetos/gm-dev-env/core; ./run.sh $*; cd - >/dev/null; }
@@ -132,3 +135,14 @@ export LESS_TERMCAP_ue=$'\e[0m'        # reset underline
 export GROFF_NO_SGR=1                  # for konsole and gnome-terminal
 
 export MANPAGER='less -s -M +Gg'
+
+fpath=(~/.zsh/completion $fpath)
+autoload -Uz compinit && compinit -i
+
+source /etc/profile.d/undistract-me.sh
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/fabio/Downloads/google-cloud-sdk/path.zsh.inc' ]; then source '/home/fabio/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/home/fabio/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then source '/home/fabio/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
