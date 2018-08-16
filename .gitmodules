@@ -7,3 +7,6 @@
 [submodule "tmux-yank"]
 	path = tmux-yank
 	url = git@github.com:tmux-plugins/tmux-yank.git
+[submodule "diff-so-fancy"]
+	path = diff-so-fancy
+	url = https://github.com/so-fancy/diff-so-fancy

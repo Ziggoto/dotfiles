@@ -13,6 +13,7 @@ A collection de scripts that I use on my daily activities.
 	  - Based on @gpakosz tmux dotfiles
 	  - Vi mode always enabled
 	  - Plugins like `tmux-yank` and `tmux-ressurect`
+  - `Diff-so-fancy`
 
 ### And this is how it's looks like:
   
