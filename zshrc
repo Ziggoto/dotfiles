@@ -146,3 +146,11 @@ if [ -f '/home/fabio/Downloads/google-cloud-sdk/path.zsh.inc' ]; then source '/h
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/home/fabio/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then source '/home/fabio/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+
+export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:~/.cabal/bin:/opt/cabal/1.22/bin:/opt/ghc/7.10.3/bin
+export PATH=$PATH:~/anaconda3/bin
+
+# Requires bat installed:
+# https://github.com/sharkdp/bat
+alias bat="bat --paging auto"
