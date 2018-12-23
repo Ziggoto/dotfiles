@@ -84,44 +84,36 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+#export NVM_DIR="$HOME/.nvm"
+#[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+#[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-export BROWSER=/usr/bin/firefox
-export CHROMIUM_BIN=/usr/bin/chromium-browser
-export JAVA_HOME=/usr/lib/jvm/java-8-oracle
-export ANDROID_HOME=/home/fabio/Android/Sdk
-export GOPATH=/home/fabio/go
-export GOROOT=/usr/local/go
-export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$GOPATH/bin
+#export BROWSER=/usr/bin/firefox
+#export CHROMIUM_BIN=/usr/bin/chromium-browser
+#export JAVA_HOME=/usr/lib/jvm/java-8-oracle
+#export ANDROID_HOME=~/Android/Sdk
+#export GOPATH=~/go
+#export GOROOT=/usr/local/go
+#export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$GOPATH/bin
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/home/fabio/.sdkman"
-[[ -s "/home/fabio/.sdkman/bin/sdkman-init.sh" ]] && source "/home/fabio/.sdkman/bin/sdkman-init.sh"
+#export SDKMAN_DIR="/home/fabio/.sdkman"
+#[[ -s "/home/fabio/.sdkman/bin/sdkman-init.sh" ]] && source "/home/fabio/.sdkman/bin/sdkman-init.sh"
 
 source /etc/zsh_command_not_found
 
-if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
-        source /etc/profile.d/vte.sh
-fi
-
-source ~/antigen.zsh
+#source ~/antigen.zsh
 # antigen bundle soimort/translate-shell
-
-# export PATH=/home/fabio/.nvm/versions/node/v8.1.2/bin:/home/fabio/.sdkman/candidates/gradle/current/bin:/home/fabio/bin:/home/fabio/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/lib/jvm/java-8-oracle/bin:/usr/lib/jvm/java-8-oracle/db/bin:/usr/lib/jvm/java-8-oracle/jre/bin:/home/fabio/Android/Sdk/tools:/home/fabio/Android/Sdk/platform-tools:/home/fabio/.vimpkg/bin:$ANDROID_HOME/build-tools/26.0.1
 
 export EDITOR=vim
 
 # added by Anaconda3 installer
-export PATH="/home/fabio/anaconda3/bin:$PATH"
+#export PATH="/home/fabio/anaconda3/bin:$PATH"
 
-export TCLLIBPATH=/usr/lib/x86_64-linux-gnu
-
-function gmdevenv { cd /home/fabio/Projetos/gm-dev-env/core; ./run.sh $*; cd - >/dev/null; }
+#export TCLLIBPATH=/usr/lib/x86_64-linux-gnu
 
 #THIS MUST BE AT THE END OF THE FILE FOR JENV TO WORK!!!
-[[ -s "/home/fabio/.jenv/bin/jenv-init.sh" ]] && source "/home/fabio/.jenv/bin/jenv-init.sh" && source "/home/fabio/.jenv/commands/completion.sh"
+#[[ -s "/home/fabio/.jenv/bin/jenv-init.sh" ]] && source "/home/fabio/.jenv/bin/jenv-init.sh" && source "/home/fabio/.jenv/commands/completion.sh"
 
 # Have less display colours
 # # from: https://wiki.archlinux.org/index.php/Color_output_in_console#man
@@ -136,21 +128,17 @@ export GROFF_NO_SGR=1                  # for konsole and gnome-terminal
 
 export MANPAGER='less -s -M +Gg'
 
-fpath=(~/.zsh/completion $fpath)
-autoload -Uz compinit && compinit -i
+#fpath=(~/.zsh/completion $fpath)
+#autoload -Uz compinit && compinit -i
 
-source /etc/profile.d/undistract-me.sh
+#source /etc/profile.d/undistract-me.sh
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/home/fabio/Downloads/google-cloud-sdk/path.zsh.inc' ]; then source '/home/fabio/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+#if [ -f '/home/fabio/Downloads/google-cloud-sdk/path.zsh.inc' ]; then source '/home/fabio/Downloads/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/home/fabio/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then source '/home/fabio/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+#if [ -f '/home/fabio/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then source '/home/fabio/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
 
-export PATH=$PATH:/usr/local/go/bin
-export PATH=$PATH:~/.cabal/bin:/opt/cabal/1.22/bin:/opt/ghc/7.10.3/bin
-export PATH=$PATH:~/anaconda3/bin
-
-# Requires bat installed:
-# https://github.com/sharkdp/bat
-alias bat="bat --paging auto"
+#export PATH=$PATH:/usr/local/go/bin
+#export PATH=$PATH:~/.cabal/bin:/opt/cabal/1.22/bin:/opt/ghc/7.10.3/bin
+#export PATH=$PATH:~/anaconda3/bin
