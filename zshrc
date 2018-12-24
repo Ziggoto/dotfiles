@@ -128,6 +128,8 @@ export GROFF_NO_SGR=1                  # for konsole and gnome-terminal
 
 export MANPAGER='less -s -M +Gg'
 
+export TERM=xterm-256color
+
 #fpath=(~/.zsh/completion $fpath)
 #autoload -Uz compinit && compinit -i
 
