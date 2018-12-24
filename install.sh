@@ -11,7 +11,10 @@ function syncFiles(){
 
 function downloadDependecies(){
     if which apt 1>/dev/null; then
-        echo "Downloading packages";
+        echo "Updating repositories"
+        sudo apt update
+
+        echo "Downloading packages"
         sudo apt install -y curl vim zsh less fonts-powerline
 
         # Install OhMyZSH
