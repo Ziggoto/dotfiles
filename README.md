@@ -16,7 +16,9 @@ A collection de scripts that I use on my daily activities.
 
 ### And this is how it's looks like:
 
-![demo](demo.png)
+![Demo](demo1.png)
+![Diff-so-fancy](demo2.png)
+![Manpages](demo3.png)
 
 ### Installation
 If you're using a debian like Linux distro (aka Ubuntu, Mint, Deepin, Elementary, Kali and others) you can just run:
