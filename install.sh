@@ -1,4 +1,21 @@
 #!/usr/bin/env bash
+function configureDiffSoFancy(){
+    sudo ln -s $(readlink -f diff-so-fancy/diff-so-fancy) /usr/local/bin/diff-so-fancy
+
+    git config --global core.pager "diff-so-fancy | less --tabs=4 -RFX"
+    git config --global color.ui true
+    git config --global color.diff-highlight.oldNormal    "red bold"
+    git config --global color.diff-highlight.oldHighlight "red bold 52"
+    git config --global color.diff-highlight.newNormal    "green bold"
+    git config --global color.diff-highlight.newHighlight "green bold 22"
+    git config --global color.diff.meta       "yellow"
+    git config --global color.diff.frag       "magenta bold"
+    git config --global color.diff.commit     "yellow bold"
+    git config --global color.diff.old        "red bold"
+    git config --global color.diff.new        "green bold"
+    git config --global color.diff.whitespace "red reverse"
+}
+
 function syncFiles(){
     cp oh-my-zsh/themes/ziggoto.zsh-theme ~/.oh-my-zsh/themes
     cp zshrc ~/.zshrc
@@ -41,6 +58,7 @@ function checkDependecies(){
     # Makes zsh as default shell
     which zsh | chsh
     syncFiles
+    configureDiffSoFancy
 }
 
 function startInstall() {
