@@ -130,6 +130,8 @@ export MANPAGER='less -s -M +Gg'
 
 export TERM=xterm-256color
 
+source kubectl_autocomp
+
 #fpath=(~/.zsh/completion $fpath)
 #autoload -Uz compinit && compinit -i
 
