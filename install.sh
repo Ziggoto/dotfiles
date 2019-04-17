@@ -44,6 +44,9 @@ function downloadDependecies(){
         chmod u+x diff-so-fancy
         sudo mv diff-so-fancy /usr/local/bin/
 
+        # Makes zsh as default shell
+        which zsh | chsh
+
         # Install OhMyZSH
         sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
     else
@@ -64,15 +67,13 @@ function checkIfHasPermission(){
 function checkDependecies(){
     checkIfHasPermission
     downloadDependecies
-
-    # Makes zsh as default shell
-    which zsh | chsh
-    syncFiles
-    configureDiffSoFancy
 }
 
 function startInstall() {
     checkDependecies
+
+    syncFiles
+    configureDiffSoFancy
 }
 
 cat <<-HEREDOC
