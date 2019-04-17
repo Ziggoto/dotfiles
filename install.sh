@@ -38,7 +38,7 @@ function downloadDependecies(){
         sudo apt update
 
         echo "Downloading packages"
-        sudo apt install -y curl wget vim zsh tmux less fonts-powerline xclip
+        sudo apt install -y curl wget vim zsh tmux less fonts-powerline xclip sed
 
         # Install Diff-so-Fancy
         cd /temp
