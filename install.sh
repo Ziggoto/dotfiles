@@ -32,7 +32,7 @@ function downloadDependecies(){
         sudo apt update
 
         echo "Downloading packages"
-        sudo apt install -y curl vim zsh tmux less fonts-powerline
+        sudo apt install -y curl vim zsh tmux less fonts-powerline xclip
 
         # Install OhMyZSH
         sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
@@ -53,10 +53,10 @@ function checkIfHasPermission(){
 
 function checkDependecies(){
     checkIfHasPermission
-    downloadDependecies
+    # downloadDependecies
 
     # Makes zsh as default shell
-    which zsh | chsh
+    # which zsh | chsh
     syncFiles
     configureDiffSoFancy
 }
