@@ -32,7 +32,7 @@ function downloadDependecies(){
         sudo apt update
 
         echo "Downloading packages"
-        sudo apt install -y curl vim zsh less fonts-powerline
+        sudo apt install -y curl vim zsh tmux less fonts-powerline
 
         # Install OhMyZSH
         sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
