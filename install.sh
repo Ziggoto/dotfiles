@@ -17,6 +17,8 @@ function configureDiffSoFancy(){
 }
 
 function syncFiles(){
+    sed -ri "s/fabio/$(whoami)/g" zshrc
+
     cp oh-my-zsh/themes/ziggoto.zsh-theme ~/.oh-my-zsh/themes
     cp zshrc ~/.zshrc
     cp tmux.conf ~/.tmux.conf

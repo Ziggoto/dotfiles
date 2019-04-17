@@ -96,10 +96,6 @@ source $ZSH/oh-my-zsh.sh
 #export GOROOT=/usr/local/go
 #export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$GOPATH/bin
 
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-#export SDKMAN_DIR="/home/fabio/.sdkman"
-#[[ -s "/home/fabio/.sdkman/bin/sdkman-init.sh" ]] && source "/home/fabio/.sdkman/bin/sdkman-init.sh"
-
 source /etc/zsh_command_not_found
 
 #source ~/antigen.zsh
@@ -108,12 +104,9 @@ source /etc/zsh_command_not_found
 export EDITOR=vim
 
 # added by Anaconda3 installer
-#export PATH="/home/fabio/anaconda3/bin:$PATH"
+#export PATH="~/anaconda3/bin:$PATH"
 
 #export TCLLIBPATH=/usr/lib/x86_64-linux-gnu
-
-#THIS MUST BE AT THE END OF THE FILE FOR JENV TO WORK!!!
-#[[ -s "/home/fabio/.jenv/bin/jenv-init.sh" ]] && source "/home/fabio/.jenv/bin/jenv-init.sh" && source "/home/fabio/.jenv/commands/completion.sh"
 
 # Have less display colours
 # # from: https://wiki.archlinux.org/index.php/Color_output_in_console#man
