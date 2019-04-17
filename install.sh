@@ -21,9 +21,13 @@ function syncFiles(){
     cp zshrc ~/.zshrc
     cp tmux.conf ~/.tmux.conf
     cp tmux.conf.local ~/.tmux.conf.local
-    cp vimrc ~/.vimrc
+    # cp vimrc ~/.vimrc
+    cp generate.vim ~/.vimrc
 
     source ~/.zshrc
+    (vim)
+    echo '' >> ~/.vimrc
+    cat custom.vim >> ~/.vimrc
 }
 
 function downloadDependecies(){
@@ -32,7 +36,13 @@ function downloadDependecies(){
         sudo apt update
 
         echo "Downloading packages"
-        sudo apt install -y curl vim zsh tmux less fonts-powerline xclip
+        sudo apt install -y curl wget vim zsh tmux less fonts-powerline xclip
+
+        # Install Diff-so-Fancy
+        cd /temp
+        wget https://raw.githubusercontent.com/so-fancy/diff-so-fancy/master/third_party/build_fatpack/diff-so-fancy
+        chmod u+x diff-so-fancy
+        sudo mv diff-so-fancy /usr/local/bin/
 
         # Install OhMyZSH
         sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
@@ -53,10 +63,10 @@ function checkIfHasPermission(){
 
 function checkDependecies(){
     checkIfHasPermission
-    # downloadDependecies
+    downloadDependecies
 
     # Makes zsh as default shell
-    # which zsh | chsh
+    which zsh | chsh
     syncFiles
     configureDiffSoFancy
 }
