@@ -139,3 +139,5 @@ source kubectl_autocomp
 #export PATH=$PATH:/usr/local/go/bin
 #export PATH=$PATH:~/.cabal/bin:/opt/cabal/1.22/bin:/opt/ghc/7.10.3/bin
 #export PATH=$PATH:~/anaconda3/bin
+
+unsetopt HIST_VERIFY
