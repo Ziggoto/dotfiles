@@ -88,23 +88,12 @@ source $ZSH/oh-my-zsh.sh
 #[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 #[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-#export BROWSER=/usr/bin/firefox
-#export CHROMIUM_BIN=/usr/bin/chromium-browser
-#export JAVA_HOME=/usr/lib/jvm/java-8-oracle
-#export ANDROID_HOME=~/Android/Sdk
-#export GOPATH=~/go
-#export GOROOT=/usr/local/go
-#export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$GOPATH/bin
-
 source /etc/zsh_command_not_found
 
 #source ~/antigen.zsh
 # antigen bundle soimort/translate-shell
 
 export EDITOR=vim
-
-# added by Anaconda3 installer
-#export PATH="~/anaconda3/bin:$PATH"
 
 #export TCLLIBPATH=/usr/lib/x86_64-linux-gnu
 
@@ -123,21 +112,23 @@ export MANPAGER='less -s -M +Gg'
 
 export TERM=xterm-256color
 
-source kubectl_autocomp
+# source kubectl_autocomp
 
 #fpath=(~/.zsh/completion $fpath)
 #autoload -Uz compinit && compinit -i
 
 #source /etc/profile.d/undistract-me.sh
 
-# The next line updates PATH for the Google Cloud SDK.
-#if [ -f '/home/fabio/Downloads/google-cloud-sdk/path.zsh.inc' ]; then source '/home/fabio/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+#[ -s "/home/fabio/.jabba/jabba.sh" ] && source "/home/fabio/.jabba/jabba.sh"
 
-# The next line enables shell command completion for gcloud.
-#if [ -f '/home/fabio/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then source '/home/fabio/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
-
+#export BROWSER=/usr/bin/firefox
+#export CHROMIUM_BIN=/usr/bin/chromium-browser
+#export ANDROID_HOME=~/Android/Sdk
+# export GOPATH=~/go
+# export GOROOT=/usr/local/go
+#export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$GOPATH/bin
+#export PATH="~/anaconda3/bin:$PATH"
 #export PATH=$PATH:/usr/local/go/bin
 #export PATH=$PATH:~/.cabal/bin:/opt/cabal/1.22/bin:/opt/ghc/7.10.3/bin
-#export PATH=$PATH:~/anaconda3/bin
 
 unsetopt HIST_VERIFY
