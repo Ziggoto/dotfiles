@@ -1,6 +1,9 @@
 "*****************************************************************************
 "" My (Fábio Theophilo) custom modifications
 "*****************************************************************************
+Plug 'posva/vim-vue'
+Plug 'christoomey/vim-system-copy'
+
 set foldmethod=indent
 set foldlevel=20
 set autoread
