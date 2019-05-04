@@ -18,6 +18,7 @@ function configureDiffSoFancy(){
 
 function syncFiles(){
     sed -ri "s/fabio/$(whoami)/g" zshrc
+    sed -ri "174,175s@\.\/Projetos@$(pwd)@g" tmux.conf
 
     cp oh-my-zsh/themes/ziggoto.zsh-theme ~/.oh-my-zsh/themes
     cp zshrc ~/.zshrc
@@ -85,6 +86,7 @@ This script only had been tested on Ubuntu 18.04. It may not work on other distr
 
 Do you still want to try? [Y/n]
 HEREDOC
+
 read beginInstall
 
 case $beginInstall in
