@@ -54,3 +54,6 @@ function! NERDCommenter_after()
 endfunction
 
 autocmd FileType vue syntax sync fromstart
+autocmd FileType vue setl tabstop=2|setl shiftwidth=2|setl expandtab softtabstop=2
+
+noremap <Leader>gu :GitGutterUndoHunk<CR>
