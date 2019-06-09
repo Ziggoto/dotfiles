@@ -3,6 +3,7 @@
 "*****************************************************************************
 Plug 'posva/vim-vue'
 Plug 'christoomey/vim-system-copy'
+Plug 'scrooloose/nerdcommenter'
 
 set foldmethod=indent
 set foldlevel=20
@@ -29,3 +30,27 @@ let g:system_copy#copy_command='xclip -sel clipboard'
 let g:system_copy#paste_command='xclip -sel clipboard -o'
 
 hi Normal guibg=NONE ctermbg=NONE
+
+let NERDSpaceDelims=1
+
+let g:ft = ''
+function! NERDCommenter_before()
+  if &ft == 'vue'
+    let g:ft = 'vue'
+    let stack = synstack(line('.'), col('.'))
+    if len(stack) > 0
+      let syn = synIDattr((stack)[0], 'name')
+      if len(syn) > 0
+        exe 'setf ' . substitute(tolower(syn), '^vue_', '', '')
+      endif
+    endif
+  endif
+endfunction
+function! NERDCommenter_after()
+  if g:ft == 'vue'
+    setf vue
+    let g:ft = ''
+  endif
+endfunction
+
+autocmd FileType vue syntax sync fromstart
