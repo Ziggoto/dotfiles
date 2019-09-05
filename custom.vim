@@ -4,6 +4,7 @@
 Plug 'posva/vim-vue'
 Plug 'christoomey/vim-system-copy'
 Plug 'scrooloose/nerdcommenter'
+Plug 'lfilho/cosco.vim'
 
 set foldmethod=indent
 set foldlevel=20
@@ -57,3 +58,6 @@ autocmd FileType vue syntax sync fromstart
 autocmd FileType vue setl tabstop=2|setl shiftwidth=2|setl expandtab softtabstop=2
 
 noremap <Leader>gu :GitGutterUndoHunk<CR>
+
+autocmd FileType javascript,css nmap <silent> <Leader>; <Plug>(cosco-commaOrSemiColon)
+autocmd FileType javascript,css imap <silent> <Leader>; <c-o><Plug>(cosco-commaOrSemiColon)
