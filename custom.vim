@@ -59,5 +59,9 @@ autocmd FileType vue setl tabstop=2|setl shiftwidth=2|setl expandtab softtabstop
 
 noremap <Leader>gu :GitGutterUndoHunk<CR>
 
+set backupdir=.backup/,~/.backup/,/tmp//
+set directory=.swp/,~/.swp/,/tmp//
+set undodir=.undo/,~/.undo/,/tmp//
+
 autocmd FileType javascript,css nmap <silent> <Leader>; <Plug>(cosco-commaOrSemiColon)
 autocmd FileType javascript,css imap <silent> <Leader>; <c-o><Plug>(cosco-commaOrSemiColon)
