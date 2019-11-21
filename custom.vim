@@ -69,3 +69,15 @@ autocmd FileType javascript,css nmap <silent> <Leader>; <Plug>(cosco-commaOrSemi
 autocmd FileType javascript,css imap <silent> <Leader>; <c-o><Plug>(cosco-commaOrSemiColon)
 
 autocmd FileType cucumber setl tabstop=2|setl shiftwidth=2|setl expandtab softtabstop=2
+
+function! BuildComposer(info)
+  if a:info.status != 'unchanged' || a:info.force
+    if has('nvim')
+      !cargo build --release --locked
+    else
+      !cargo build --release --locked --no-default-features --features json-rpc
+    endif
+  endif
+endfunction
+
+Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') }
