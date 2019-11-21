@@ -5,6 +5,7 @@ Plug 'posva/vim-vue'
 Plug 'christoomey/vim-system-copy'
 Plug 'scrooloose/nerdcommenter'
 Plug 'lfilho/cosco.vim'
+Plug 'junegunn/gv.vim'
 
 " My custom modifications
 set foldmethod=indent
@@ -81,4 +82,3 @@ function! BuildComposer(info)
 endfunction
 
 Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') }
-Plug 'junegunn/gv.vim'
