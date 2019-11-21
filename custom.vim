@@ -6,10 +6,12 @@ Plug 'christoomey/vim-system-copy'
 Plug 'scrooloose/nerdcommenter'
 Plug 'lfilho/cosco.vim'
 
+" My custom modifications
 set foldmethod=indent
 set foldlevel=20
 set autoread
 set mouse=a
+set cursorline
 
 " Syntastic configs
 set statusline+=%#warningmsg#
