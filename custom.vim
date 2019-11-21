@@ -67,3 +67,5 @@ set undodir=.undo/,~/.undo/,/tmp//
 
 autocmd FileType javascript,css nmap <silent> <Leader>; <Plug>(cosco-commaOrSemiColon)
 autocmd FileType javascript,css imap <silent> <Leader>; <c-o><Plug>(cosco-commaOrSemiColon)
+
+autocmd FileType cucumber setl tabstop=2|setl shiftwidth=2|setl expandtab softtabstop=2
