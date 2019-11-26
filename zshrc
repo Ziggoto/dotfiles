@@ -135,3 +135,25 @@ unsetopt HIST_VERIFY
 
 export FZF_DEFAULT_OPTS="--ansi --preview-window 'right:60%' --preview 'bat --color=always --style=header,grid --line-range :300 {}'"
 alias ranger='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
+
+bindkey -v
+
+# This part of code only works with my custom ZSH theme
+function insert-mode () { echo "" }
+function normal-mode () { echo " $fg_bold[magenta](vim mode)$reset_color" }
+
+function set-prompt () {
+    case ${KEYMAP} in
+      (vicmd)      VI_MODE="$(normal-mode)" ;;
+      (main|viins) VI_MODE="$(insert-mode)" ;;
+      (*)          VI_MODE="$(insert-mode)" ;;
+    esac
+}
+
+function zle-line-init zle-keymap-select {
+    set-prompt
+    zle reset-prompt
+}
+
+zle -N zle-line-init
+zle -N zle-keymap-select
