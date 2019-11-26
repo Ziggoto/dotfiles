@@ -4,6 +4,7 @@ A collection de scripts that I use on my daily activities.
 ### Which Includes:
 
   - `Oh-My-Zsh` (with my custom theme called `Ziggoto-theme`)
+      - (new) Vim mode enabled on ZSH
   - `Vim Bootstrap` customized
 	  - Yank and Paste to system's clipboard with xclip
 	  - Systastic configured for Ecmascript (and support to .vue files)
@@ -16,6 +17,7 @@ A collection de scripts that I use on my daily activities.
 
 ### And this is how it's looks like:
 
+![Vim-Mode](vim-mode.gif)
 ![Demo](demo1.png)
 ![Diff-so-fancy](demo2.png)
 ![Manpages](demo3.png)
