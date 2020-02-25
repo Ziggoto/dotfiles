@@ -63,7 +63,8 @@ Plug 'scrooloose/syntastic'
 Plug 'tpope/vim-surround'
 Plug 'jacoborus/tender.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-" Plug 'jparise/vim-graphql'
+Plug 'bronson/vim-trailing-whitespace'
+Plug 'jparise/vim-graphql'
 
 if isdirectory('/usr/local/opt/fzf')
   Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
