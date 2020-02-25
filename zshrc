@@ -119,8 +119,6 @@ export TERM=xterm-256color
 
 #source /etc/profile.d/undistract-me.sh
 
-#[ -s "/home/fabio/.jabba/jabba.sh" ] && source "/home/fabio/.jabba/jabba.sh"
-
 #export BROWSER=/usr/bin/firefox
 #export CHROMIUM_BIN=/usr/bin/chromium-browser
 #export ANDROID_HOME=~/Android/Sdk
@@ -157,3 +155,8 @@ function zle-line-init zle-keymap-select {
 
 zle -N zle-line-init
 zle -N zle-keymap-select
+
+# My aliases
+alias e2p='trans en:pt'
+alias p2e='trans pt:en'
+alias vim="nvim"
