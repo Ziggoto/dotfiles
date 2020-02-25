@@ -93,7 +93,7 @@ source /etc/zsh_command_not_found
 #source ~/antigen.zsh
 # antigen bundle soimort/translate-shell
 
-export EDITOR=vim
+export EDITOR=nvim
 
 #export TCLLIBPATH=/usr/lib/x86_64-linux-gnu
 
