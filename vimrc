@@ -5,7 +5,7 @@
 "*****************************************************************************
 let vimplug_exists=expand('~/.vim/autoload/plug.vim')
 
-let g:vim_bootstrap_langs = "html,javascript,typescript"
+let g:vim_bootstrap_langs = "c,go,haskell,html,javascript,python"
 let g:vim_bootstrap_editor = "vim"				" nvim or vim
 
 if !filereadable(vimplug_exists)
@@ -15,7 +15,7 @@ if !filereadable(vimplug_exists)
   endif
   echo "Installing Vim-Plug..."
   echo ""
-  silent exec "!\curl -fLo " . vimplug_exists . " --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
+  silent exec "!\curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
   let g:not_finish_vimplug = "yes"
 
   autocmd VimEnter * PlugInstall
@@ -36,6 +36,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'airblade/vim-gitgutter'
 Plug 'vim-scripts/grep.vim'
 Plug 'vim-scripts/CSApprox'
+Plug 'bronson/vim-trailing-whitespace'
 Plug 'Raimondi/delimitMate'
 Plug 'majutsushi/tagbar'
 Plug 'w0rp/ale'
@@ -43,8 +44,10 @@ Plug 'Yggdroot/indentLine'
 Plug 'avelino/vim-bootstrap-updater'
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-rhubarb' " required by fugitive to :Gbrowse
+Plug 'posva/vim-vue'
+" Plug 'christoomey/vim-system-copy'
+Plug 'ollykel/v-vim'
 Plug 'pedrohdz/vim-yaml-folds'
-Plug 'christoomey/vim-system-copy'
 
 " My custom plugins
 function! BuildComposer(info)
@@ -60,11 +63,11 @@ endfunction
 Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') }
 Plug 'junegunn/gv.vim'
 Plug 'scrooloose/syntastic'
-Plug 'tpope/vim-surround'
+" Plug 'tpope/vim-surround'
 Plug 'jacoborus/tender.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'bronson/vim-trailing-whitespace'
-Plug 'jparise/vim-graphql'
+" Plug 'jparise/vim-graphql'
 
 if isdirectory('/usr/local/opt/fzf')
   Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
@@ -93,6 +96,23 @@ Plug 'tomasr/molokai'
 "" Custom bundles
 "*****************************************************************************
 
+" c
+Plug 'vim-scripts/c.vim', {'for': ['c', 'cpp']}
+Plug 'ludwig/split-manpage.vim'
+
+
+" go
+"" Go Lang Bundle
+Plug 'fatih/vim-go', {'do': ':GoInstallBinaries'}
+
+
+" haskell
+"" Haskell Bundle
+Plug 'eagletmt/neco-ghc'
+Plug 'dag/vim2hs'
+Plug 'pbrisbin/vim-syntax-shakespeare'
+
+
 " html
 "" HTML Bundle
 Plug 'hail2u/vim-css3-syntax'
@@ -117,6 +137,12 @@ Plug 'HerringtonDarkholme/yats.vim'
 Plug 'posva/vim-vue'
 Plug 'leafOfTree/vim-vue-plugin'
 
+
+
+" python
+"" Python Bundle
+Plug 'davidhalter/jedi-vim'
+Plug 'raimon49/requirements.txt.vim', {'for': 'requirements'}
 
 
 "*****************************************************************************
@@ -470,6 +496,86 @@ nnoremap <Leader>o :.Gbrowse<CR>
 "" Custom configs
 "*****************************************************************************
 
+" c
+autocmd FileType c setlocal tabstop=4 shiftwidth=4 expandtab
+autocmd FileType cpp setlocal tabstop=4 shiftwidth=4 expandtab
+
+
+" go
+" vim-go
+" run :GoBuild or :GoTestCompile based on the go file
+function! s:build_go_files()
+  let l:file = expand('%')
+  if l:file =~# '^\f\+_test\.go$'
+    call go#test#Test(0, 1)
+  elseif l:file =~# '^\f\+\.go$'
+    call go#cmd#Build(0)
+  endif
+endfunction
+
+let g:go_list_type = "quickfix"
+let g:go_fmt_command = "goimports"
+let g:go_fmt_fail_silently = 1
+
+let g:go_highlight_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_generate_tags = 1
+let g:go_highlight_space_tab_error = 0
+let g:go_highlight_array_whitespace_error = 0
+let g:go_highlight_trailing_whitespace_error = 0
+let g:go_highlight_extra_types = 1
+
+autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4 softtabstop=4
+
+augroup completion_preview_close
+  autocmd!
+  if v:version > 703 || v:version == 703 && has('patch598')
+    autocmd CompleteDone * if !&previewwindow && &completeopt =~ 'preview' | silent! pclose | endif
+  endif
+augroup END
+
+augroup go
+
+  au!
+  au Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
+  au Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
+  au Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
+  au Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
+
+  au FileType go nmap <Leader>dd <Plug>(go-def-vertical)
+  au FileType go nmap <Leader>dv <Plug>(go-doc-vertical)
+  au FileType go nmap <Leader>db <Plug>(go-doc-browser)
+
+  au FileType go nmap <leader>r  <Plug>(go-run)
+  au FileType go nmap <leader>t  <Plug>(go-test)
+  au FileType go nmap <Leader>gt <Plug>(go-coverage-toggle)
+  au FileType go nmap <Leader>i <Plug>(go-info)
+  au FileType go nmap <silent> <Leader>l <Plug>(go-metalinter)
+  au FileType go nmap <C-g> :GoDecls<cr>
+  au FileType go nmap <leader>dr :GoDeclsDir<cr>
+  au FileType go imap <C-g> <esc>:<C-u>GoDecls<cr>
+  au FileType go imap <leader>dr <esc>:<C-u>GoDeclsDir<cr>
+  au FileType go nmap <leader>rb :<C-u>call <SID>build_go_files()<CR>
+
+augroup END
+
+" ale
+:call extend(g:ale_linters, {
+    \"go": ['golint', 'go vet'], })
+
+
+" haskell
+let g:haskell_conceal_wide = 1
+let g:haskell_multiline_strings = 1
+let g:necoghc_enable_detailed_browse = 1
+autocmd Filetype haskell setlocal omnifunc=necoghc#omnifunc
+
+
 " html
 " for html files, 2 spaces
 autocmd Filetype html setlocal ts=2 sw=2 expandtab
@@ -481,20 +587,41 @@ let g:javascript_enable_domhtmlcss = 1
 " vim-javascript
 augroup vimrc-javascript
   autocmd!
-  autocmd FileType javascript setl tabstop=4|setl shiftwidth=4|setl expandtab softtabstop=4
+  autocmd FileType javascript setl tabstop=2|setl shiftwidth=2|setl expandtab softtabstop=2
 augroup END
 
 
-" typescript
-let g:yats_host_keyword = 1
+" python
+" vim-python
+augroup vimrc-python
+  autocmd!
+  autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=8 colorcolumn=79
+      \ formatoptions+=croq softtabstop=4
+      \ cinwords=if,elif,else,for,while,try,except,finally,def,class,with
+augroup END
 
+" jedi-vim
+let g:jedi#popup_on_dot = 0
+let g:jedi#goto_assignments_command = "<leader>g"
+let g:jedi#goto_definitions_command = "<leader>d"
+let g:jedi#documentation_command = "K"
+let g:jedi#usages_command = "<leader>n"
+let g:jedi#rename_command = "<leader>r"
+let g:jedi#show_call_signatures = "0"
+let g:jedi#completions_command = "<C-Space>"
+let g:jedi#smart_auto_mappings = 0
 
+" ale
+:call extend(g:ale_linters, {
+    \'python': ['flake8'], })
 
-" vuejs
-" vim vue
-let g:vue_disable_pre_processors=1
-" vim vue plugin
-let g:vim_vue_plugin_load_full_syntax = 1
+" vim-airline
+let g:airline#extensions#virtualenv#enabled = 1
+
+" Syntax highlight
+" Default highlight is better than polyglot
+let g:polyglot_disabled = ['python']
+let python_highlight_all = 1
 
 
 "*****************************************************************************
@@ -545,7 +672,9 @@ else
   let g:airline_symbols.linenr = ''
 endif
 
-" My custom modifications
+"*****************************************************************************
+"" My (Fábio Theophilo) custom modifications
+"*****************************************************************************
 set foldmethod=indent
 set foldlevel=20
 set autoread
@@ -565,13 +694,46 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_javascript_eslint_exe='$(npm bin)/eslint'
 
-set backupdir=.backup/,~/.backup/,/tmp//
-set directory=.swp/,~/.swp/,/tmp//
-set undodir=.undo/,~/.undo/,/tmp//
+let g:system_copy#copy_command='xclip -sel clipboard'
+let g:system_copy#paste_command='xclip -sel clipboard -o'
+
+hi Normal guibg=NONE ctermbg=NONE
+
+let NERDSpaceDelims=1
+
+let g:ft = ''
+function! NERDCommenter_before()
+  if &ft == 'vue'
+    let g:ft = 'vue'
+    let stack = synstack(line('.'), col('.'))
+    if len(stack) > 0
+      let syn = synIDattr((stack)[0], 'name')
+      if len(syn) > 0
+        exe 'setf ' . substitute(tolower(syn), '^vue_', '', '')
+      endif
+    endif
+  endif
+endfunction
+function! NERDCommenter_after()
+  if g:ft == 'vue'
+    setf vue
+    let g:ft = ''
+  endif
+endfunction
+
+autocmd FileType vue syntax sync fromstart
+autocmd FileType vue setl tabstop=2|setl shiftwidth=2|setl expandtab softtabstop=2
+
+noremap <Leader>gu :GitGutterUndoHunk<CR>
 
 autocmd FileType javascript,css nmap <silent> <Leader>; <Plug>(cosco-commaOrSemiColon)
 autocmd FileType javascript,css imap <silent> <Leader>; <c-o><Plug>(cosco-commaOrSemiColon)
 
 autocmd FileType cucumber setl tabstop=2|setl shiftwidth=2|setl expandtab softtabstop=2
-
 let g:airline#extensions#tagbar#enabled = 0
+
+set swapfile
+set dir=~/.swp
+set backupdir=.backup/,~/.backup/,/tmp//
+set directory=.swp/,~/.swp/,/tmp//
+set undodir=.undo/,~/.undo/,/tmp//
