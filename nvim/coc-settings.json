@@ -1,4 +1,7 @@
 {
   "javascript.suggestionActions.enabled": false,
-  "typescript.suggestionActions.enabled": false
+  "typescript.suggestionActions.enabled": false,
+  "yaml.schemas": {
+    "kubernetes": "/*.yaml"
+  }
 }
