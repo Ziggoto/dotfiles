@@ -57,6 +57,7 @@ Plug 'jacoborus/tender.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install' }
+Plug 'editorconfig/editorconfig-vim'
 " Plug 'jparise/vim-graphql'
 
 if isdirectory('/usr/local/opt/fzf')
@@ -721,6 +722,7 @@ autocmd FileType javascript,css imap <silent> <Leader>; <c-o><Plug>(cosco-commaO
 
 autocmd FileType cucumber setl tabstop=2|setl shiftwidth=2|setl expandtab softtabstop=2
 let g:airline#extensions#tagbar#enabled = 0
+let g:EditorConfig_exclude_patterns = ['fugitive://.*']
 
 set swapfile
 set dir=~/.swp
