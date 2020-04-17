@@ -50,23 +50,13 @@ Plug 'ollykel/v-vim'
 Plug 'pedrohdz/vim-yaml-folds'
 
 " My custom plugins
-function! BuildComposer(info)
-  if a:info.status != 'unchanged' || a:info.force
-    if has('nvim')
-      !cargo build --release --locked
-    else
-      !cargo build --release --locked --no-default-features --features json-rpc
-    endif
-  endif
-endfunction
-
-Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') }
 Plug 'junegunn/gv.vim'
 Plug 'scrooloose/syntastic'
 " Plug 'tpope/vim-surround'
 Plug 'jacoborus/tender.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'bronson/vim-trailing-whitespace'
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install' }
 " Plug 'jparise/vim-graphql'
 
 if isdirectory('/usr/local/opt/fzf')
