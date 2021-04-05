@@ -28,37 +28,42 @@ call plug#begin(expand('~/.vim/plugged'))
 "" Plug install packages
 "*****************************************************************************
 Plug 'scrooloose/nerdtree'
-Plug 'jistr/vim-nerdtree-tabs'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'airblade/vim-gitgutter'
-Plug 'vim-scripts/grep.vim'
-Plug 'vim-scripts/CSApprox'
-Plug 'bronson/vim-trailing-whitespace'
 Plug 'Raimondi/delimitMate'
-Plug 'majutsushi/tagbar'
 Plug 'w0rp/ale'
 Plug 'Yggdroot/indentLine'
 Plug 'avelino/vim-bootstrap-updater'
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-rhubarb' " required by fugitive to :Gbrowse
-Plug 'posva/vim-vue'
-" Plug 'christoomey/vim-system-copy'
-Plug 'ollykel/v-vim'
+Plug 'ollykel/v-vim' " v language syntax
 Plug 'pedrohdz/vim-yaml-folds'
 
 " My custom plugins
 Plug 'junegunn/gv.vim'
 Plug 'scrooloose/syntastic'
-" Plug 'tpope/vim-surround'
+Plug 'tpope/vim-surround'
 Plug 'jacoborus/tender.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install' }
 Plug 'editorconfig/editorconfig-vim'
-" Plug 'jparise/vim-graphql'
+Plug 'jparise/vim-graphql'
+Plug 'wellle/targets.vim'
+Plug 'tpope/vim-unimpaired'
+" Plug 'junegunn/vim-peekaboo'
+" Plug 'Yilin-Yang/vim-markbar'
+Plug 'kshenoy/vim-signature'
+Plug 'nathanaelkane/vim-indent-guides'
+" Plug 'raghur/vim-ghost', {'do': ':GhostInstall'}
+Plug 'mhinz/vim-startify'
+Plug 'Asheq/close-buffers.vim'
+" Plug 'itchyny/vim-cursorword'
+Plug 'tpope/vim-sleuth'
+Plug 'APZelos/blamer.nvim'
 
 if isdirectory('/usr/local/opt/fzf')
   Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
@@ -77,11 +82,12 @@ Plug 'xolox/vim-misc'
 Plug 'xolox/vim-session'
 
 "" Snippets
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
+" Plug 'SirVer/ultisnips'
+" Plug 'honza/vim-snippets'
 
 "" Color
 Plug 'tomasr/molokai'
+Plug 'joshdick/onedark.vim'
 
 "*****************************************************************************
 "" Custom bundles
@@ -107,34 +113,30 @@ Plug 'pbrisbin/vim-syntax-shakespeare'
 " html
 "" HTML Bundle
 Plug 'hail2u/vim-css3-syntax'
+Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 Plug 'gorodinskiy/vim-coloresque'
 Plug 'tpope/vim-haml'
 Plug 'mattn/emmet-vim'
-
 
 " javascript
 "" Javascript Bundle
 Plug 'jelera/vim-javascript-syntax'
 Plug 'tpope/vim-repeat'
 Plug 'lfilho/cosco.vim'
-
+Plug 'chemzqm/vim-jsx-improve'
 
 " typescript
 Plug 'leafgarland/typescript-vim'
 Plug 'HerringtonDarkholme/yats.vim'
 
-
 " vuejs
-Plug 'posva/vim-vue'
-Plug 'leafOfTree/vim-vue-plugin'
-
-
+" Plug 'posva/vim-vue'
+" Plug 'leafOfTree/vim-vue-plugin'
 
 " python
 "" Python Bundle
 Plug 'davidhalter/jedi-vim'
 Plug 'raimon49/requirements.txt.vim', {'for': 'requirements'}
-
 
 "*****************************************************************************
 "*****************************************************************************
@@ -223,7 +225,7 @@ else
   let g:indentLine_char = '┆'
   let g:indentLine_faster = 1
 
-  
+
   if $COLORTERM == 'gnome-terminal'
     set term=gnome-256color
   else
@@ -231,7 +233,6 @@ else
       set term=xterm-256color
     endif
   endif
-  
 endif
 
 
@@ -427,7 +428,7 @@ let g:UltiSnipsJumpBackwardTrigger="<c-b>"
 let g:UltiSnipsEditSplit="vertical"
 
 " ale
-let g:ale_linters = {}
+" let g:ale_linters = {}
 
 " Tagbar
 nmap <silent> <F4> :TagbarToggle<CR>
@@ -440,9 +441,9 @@ if has('autocmd')
 endif
 
 "" Copy/Paste/Cut
-if has('unnamedplus')
-  set clipboard=unnamed,unnamedplus
-endif
+" if has('unnamedplus')
+"   set clipboard=unnamed,unnamedplus
+" endif
 
 noremap YY "+y<CR>
 noremap <leader>p "+gP<CR>
@@ -556,8 +557,8 @@ augroup go
 augroup END
 
 " ale
-:call extend(g:ale_linters, {
-    \"go": ['golint', 'go vet'], })
+" :call extend(g:ale_linters, {
+"     \"go": ['golint', 'go vet'], })
 
 
 " haskell
@@ -603,8 +604,8 @@ let g:jedi#completions_command = "<C-Space>"
 let g:jedi#smart_auto_mappings = 0
 
 " ale
-:call extend(g:ale_linters, {
-    \'python': ['flake8'], })
+" :call extend(g:ale_linters, {
+"     \'python': ['flake8'], })
 
 " vim-airline
 let g:airline#extensions#virtualenv#enabled = 1
@@ -672,6 +673,8 @@ set autoread
 set mouse=a
 set cursorline
 set wildmenu
+set relativenumber
+" g:peekaboo_prefix = "<leader>"
 
 " Syntastic configs
 set statusline+=%#warningmsg#
@@ -685,8 +688,8 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_javascript_eslint_exe='$(npm bin)/eslint'
 
-let g:system_copy#copy_command='xclip -sel clipboard'
-let g:system_copy#paste_command='xclip -sel clipboard -o'
+" let g:system_copy#copy_command='xclip -sel clipboard'
+" let g:system_copy#paste_command='xclip -sel clipboard -o'
 
 hi Normal guibg=NONE ctermbg=NONE
 
@@ -729,3 +732,8 @@ set dir=~/.swp
 set backupdir=.backup/,~/.backup/,/tmp//
 set directory=.swp/,~/.swp/,/tmp//
 set undodir=.undo/,~/.undo/,/tmp//
+
+syntax sync fromstart
+
+let g:blamer_enabled = 1
+let g:blamer_delay = 500
