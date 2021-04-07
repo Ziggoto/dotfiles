@@ -48,7 +48,7 @@ function downloadDependecies(){
         sudo mv diff-so-fancy /usr/local/bin/
 
         # Makes zsh as default shell
-        which zsh | chsh
+        chsh -s $(which zsh)
 
         # Install OhMyZSH
         sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
