@@ -120,7 +120,6 @@ Plug 'mattn/emmet-vim'
 
 " javascript
 "" Javascript Bundle
-Plug 'jelera/vim-javascript-syntax'
 Plug 'tpope/vim-repeat'
 Plug 'lfilho/cosco.vim'
 Plug 'chemzqm/vim-jsx-improve'
