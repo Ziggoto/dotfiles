@@ -1,12 +1,16 @@
-" vim-bootstrap 
+" vim-bootstrap
 
 "*****************************************************************************
-"" Vim-PLug core
+"" Vim-Plug core
 "*****************************************************************************
 let vimplug_exists=expand('~/.vim/autoload/plug.vim')
 
 let g:vim_bootstrap_langs = "c,go,haskell,html,javascript,python"
 let g:vim_bootstrap_editor = "vim"				" nvim or vim
+
+let g:ale_disable_lsp = 1
+let g:ale_kotlin_ktlint_executable = "/usr/local/bin/ktlint"
+let g:ale_sign_column_always = 1
 
 if !filereadable(vimplug_exists)
   if !executable("curl")
@@ -24,6 +28,8 @@ endif
 " Required:
 call plug#begin(expand('~/.vim/plugged'))
 
+let g:polyglot_disabled = ['python']
+
 "*****************************************************************************
 "" Plug install packages
 "*****************************************************************************
@@ -39,12 +45,11 @@ Plug 'Yggdroot/indentLine'
 Plug 'avelino/vim-bootstrap-updater'
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-rhubarb' " required by fugitive to :Gbrowse
-Plug 'ollykel/v-vim' " v language syntax
 Plug 'pedrohdz/vim-yaml-folds'
 
 " My custom plugins
 Plug 'junegunn/gv.vim'
-Plug 'scrooloose/syntastic'
+" Plug 'scrooloose/syntastic'
 Plug 'tpope/vim-surround'
 Plug 'jacoborus/tender.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -58,12 +63,17 @@ Plug 'tpope/vim-unimpaired'
 " Plug 'Yilin-Yang/vim-markbar'
 Plug 'kshenoy/vim-signature'
 Plug 'nathanaelkane/vim-indent-guides'
-" Plug 'raghur/vim-ghost', {'do': ':GhostInstall'}
+Plug 'raghur/vim-ghost', {'do': ':GhostInstall'}
 Plug 'mhinz/vim-startify'
 Plug 'Asheq/close-buffers.vim'
 " Plug 'itchyny/vim-cursorword'
 Plug 'tpope/vim-sleuth'
 Plug 'APZelos/blamer.nvim'
+Plug 'udalov/kotlin-vim'
+Plug 'Chiel92/vim-autoformat'
+" Plug 'vim-scripts/RltvNmbr.vim'
+" Plug 'rhysd/vim-grammarous'
+Plug 'easymotion/vim-easymotion'
 
 if isdirectory('/usr/local/opt/fzf')
   Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
@@ -88,6 +98,7 @@ Plug 'xolox/vim-session'
 "" Color
 Plug 'tomasr/molokai'
 Plug 'joshdick/onedark.vim'
+Plug 'tomasiser/vim-code-dark'
 
 "*****************************************************************************
 "" Custom bundles
@@ -120,6 +131,7 @@ Plug 'mattn/emmet-vim'
 
 " javascript
 "" Javascript Bundle
+" Plug 'jelera/vim-javascript-syntax'
 Plug 'tpope/vim-repeat'
 Plug 'lfilho/cosco.vim'
 Plug 'chemzqm/vim-jsx-improve'
@@ -203,7 +215,7 @@ set ruler
 set number
 
 let no_buffers_menu=1
-silent! colorscheme molokai
+silent! colorscheme codedark
 
 set mousemodel=popup
 set t_Co=256
@@ -428,6 +440,7 @@ let g:UltiSnipsEditSplit="vertical"
 
 " ale
 " let g:ale_linters = {}
+let b:ale_fixers = { 'javascript': ['eslint'] }
 
 " Tagbar
 nmap <silent> <F4> :TagbarToggle<CR>
@@ -611,7 +624,6 @@ let g:airline#extensions#virtualenv#enabled = 1
 
 " Syntax highlight
 " Default highlight is better than polyglot
-let g:polyglot_disabled = ['python']
 let python_highlight_all = 1
 
 
@@ -676,21 +688,22 @@ set relativenumber
 " g:peekaboo_prefix = "<leader>"
 
 " Syntastic configs
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 0
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_javascript_eslint_exe='$(npm bin)/eslint'
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_auto_loc_list = 0
+" let g:syntastic_check_on_open = 1
+" let g:syntastic_check_on_wq = 0
+" let g:syntastic_javascript_checkers = ['eslint']
+" let g:syntastic_javascript_eslint_exe='$(npm bin)/eslint'
 
 " let g:system_copy#copy_command='xclip -sel clipboard'
 " let g:system_copy#paste_command='xclip -sel clipboard -o'
 
-hi Normal guibg=NONE ctermbg=NONE
+" hi Normal guibg=NONE ctermbg=NONE
+" highlight Normal ctermbg=black
 
 let NERDSpaceDelims=1
 
@@ -722,6 +735,8 @@ noremap <Leader>gu :GitGutterUndoHunk<CR>
 autocmd FileType javascript,css nmap <silent> <Leader>; <Plug>(cosco-commaOrSemiColon)
 autocmd FileType javascript,css imap <silent> <Leader>; <c-o><Plug>(cosco-commaOrSemiColon)
 
+" autocmd FileType kotlin colorscheme codedark
+
 autocmd FileType cucumber setl tabstop=2|setl shiftwidth=2|setl expandtab softtabstop=2
 let g:airline#extensions#tagbar#enabled = 0
 let g:EditorConfig_exclude_patterns = ['fugitive://.*']
@@ -736,3 +751,16 @@ syntax sync fromstart
 
 let g:blamer_enabled = 1
 let g:blamer_delay = 500
+
+noremap <F12> <Esc>:syntax sync fromstart<CR>
+inoremap <F12> <C-o>:syntax sync fromstart<CR>
+
+nmap <leader>F :ALEFix<CR>
+
+command! -nargs=0 Prettier :CocCommand prettier.forceFormatDocument
+
+vmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+
+" autocmd BufEnter * :RltvNmbr
+" noremap <F10> <Esc>:RltvNmbr!<CR>

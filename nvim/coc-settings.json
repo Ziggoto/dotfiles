@@ -1,7 +1,10 @@
 {
-  "javascript.suggestionActions.enabled": false,
-  "typescript.suggestionActions.enabled": false,
+  "diagnostic.displayByAle": true,
+  "typescript.suggest.autoImports": true,
   "yaml.schemas": {
     "kubernetes": "/*.yaml"
-  }
+  },
+  "prettier.singleQuote": true,
+  "prettier.semi": false,
+  "prettier.arrowParens": false
 }
