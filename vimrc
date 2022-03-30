@@ -74,6 +74,7 @@ Plug 'Chiel92/vim-autoformat'
 " Plug 'vim-scripts/RltvNmbr.vim'
 " Plug 'rhysd/vim-grammarous'
 Plug 'easymotion/vim-easymotion'
+Plug 'pantharshit00/vim-prisma'
 
 if isdirectory('/usr/local/opt/fzf')
   Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
